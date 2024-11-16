@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-
 const Navbar = () => {
     return (
         <nav className="bg-gray-950 p-4 shadow-lg">
@@ -13,5 +12,4 @@ const Navbar = () => {
         </nav>
     );
 };
-
 export default Navbar;
