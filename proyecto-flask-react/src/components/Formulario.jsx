@@ -1,15 +1,28 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
+import axios from "axios";
 const Formulario = () => {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [mensaje, setMensaje] = useState("");
+  const API_URL = "http://127.0.0.1:7500/users";
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setMensaje(`Registrado: ${nombre} ${apellido}`);
-    setNombre("");
-    setApellido("");
+    //setMensaje(`Registrado: ${nombre} ${apellido}`);
+    try{
+      const response = await axios.post(API_URL, {
+        nombre, // "nombre":"valor"
+        apellido
+      })
+      if(response.status === 200 || response.status === 201){
+        setMensaje("Usuario creado con exito");
+        setNombre("");
+        setApellido("");
+      }
+    }catch(error){
+      setMensaje("Error al crear el usuario");
+      console.log(error);
+    }
   };
 
   return (
@@ -46,9 +59,7 @@ const Formulario = () => {
       </form>
 
       {mensaje && (
-        <div className="mt-4 text-center text-green-500">
-          {mensaje}
-        </div>
+        <div className="mt-4 text-center text-green-500">{mensaje}</div>
       )}
     </div>
   );

@@ -1,19 +1,19 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './Navbar';
-import CreateUser from '';
-import RemoveUser from '';
-import UpdateUser from '';
+import { Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import CreateUser from "./pages/CreateUser";
+import DeletedUsers from "./pages/DeletedUsers";
+import EditUser from "./pages/EditUser";
 
 function App() {
-   return ( 
-     <Router>
+  return (
+    <>
       <Navbar />
       <Routes>
-        <Route path="/craete-user" element={<CreateUser />} />
-        <Route path="/remove-user" element={<RemoveUser />} />
-        <Route path="/update-user" element={<UpdateUser />} />
+        <Route path="/create-user" element={<CreateUser />} />
+        <Route path="/remove-user" element={<DeletedUsers />} />
+        <Route path="/update-user/:id" element={<EditUser />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 

@@ -1,7 +1,6 @@
-import React from 'react';
 import Formulario from '../components/Formulario';
 
-const Registro = () => {
+const CreateUser = () => {
   return (
     <div className="min-h-screen bg-gray-950 flex justify-center items-center">
       <Formulario />
@@ -9,4 +8,4 @@ const Registro = () => {
   );
 };
 
-export default Registro;
+export default CreateUser;
