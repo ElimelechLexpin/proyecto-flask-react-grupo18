@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './Navbar';
 import CreateUser from '';
 import RemoveUser from '';
-import UpdateUser from '';
+import UpdateUser from ''; //Lo dejo asi para poner las rutas
 function App() {
   return (
     <Router>
