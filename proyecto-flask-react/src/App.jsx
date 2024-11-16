@@ -1,8 +1,10 @@
-function App() {
+import React from 'react'
+import Registro from './pages/Registro.jsx' 
 
+function App() {
   return (
     <>
-      App!
+      <Registro />
     </>
   )
 }
