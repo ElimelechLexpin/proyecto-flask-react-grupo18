@@ -9,8 +9,8 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/create-user" element={<CreateUser />} />
-        <Route path="/remove-user" element={<DeletedUsers />} />
+        <Route path="/" element={<DeletedUsers />} />
+        <Route path="/create-user" element={<CreateUser/>} />
         <Route path="/update-user/:id" element={<EditUser />} />
       </Routes>
     </>

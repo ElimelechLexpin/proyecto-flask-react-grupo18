@@ -34,9 +34,16 @@ function EditUser() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user);
+    try{
+      await axios.patch(`http://127.0.0.1:7500/users2/${id}`,{
+        nombre: user.nombre,
+        apellido: user.apellido
+      })
+    }catch(error){
+      console.log(error)
+    }
     setIsEditing(false);
   };
 

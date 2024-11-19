@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 const ListUserDeleted = () => {
   const [users, setUsers] = useState([]);
   const API_URL = "http://127.0.0.1:7500/users";
+  const [refresh, setRefresh] = useState(false);
   const styles = {
     cuerpo_pg:
       "flex flex-col items-center justify-center w-full h-screen items-start bg-gray-950",
@@ -27,10 +28,20 @@ const ListUserDeleted = () => {
       }
     };
     fetchUsers();
-  }, []);
+  }, [refresh]);
 
-  const deleteCharacter = (id) => {
-    console.log(`Eliminado el usuario ${id}`)
+  const deleteCharacter = async (id) => {
+    try{
+      if(window.confirm("Estas seguro de eliminar el usuario?")){
+        await axios.delete(`${API_URL}/${id}`)
+        alert("Usuario eliminado con exito");
+        setRefresh(!refresh);
+      }else{
+        return;
+      }
+    }catch(error){
+      console.log(error)
+    }
   };
 
   return (
@@ -53,11 +64,13 @@ const ListUserDeleted = () => {
                   <td className={styles.tabla_contenido}>{user.nombre}</td>
                   <td className={styles.tabla_contenido}>{user.apellido}</td>
                   <td className={styles.tabla_contenido + " flex gap-5"}>
-                    <button
+                    <Link
+                      to={`/update-user/${user.id}`}
                       className={styles.boton_borrar_usuario}
                     >
-                      <Link to={`/update-user/${user.id}`}>Editar</Link>
-                    </button>
+                      Editar
+                    </Link>
+
                     <button
                       onClick={() => deleteCharacter(user.id)}
                       className={styles.boton_borrar_usuario}
